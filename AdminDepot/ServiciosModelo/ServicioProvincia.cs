@@ -2,6 +2,8 @@
 using AdminDepot.Modelos;
 using AccesoDatos;
 using System.Collections.Generic;
+using System;
+using System.Data.Common;
 
 namespace AdminDepot.ModelosDTOs
 {
@@ -55,9 +57,42 @@ namespace AdminDepot.ModelosDTOs
         {
             ConexionSQL conexionSQL = new ConexionSQL(conexion);
             string sql = SQL_UP_PROVINCIAS;
-            int numQuery = conexionSQL.EjecutarQuery(RemplazarValoresSql(sql));
+            int numQuery = 0;
+            var sqlCom = conexionSQL.NewSqlCommand;
+            sqlCom.CommandText = sql;
+            sqlCom.CommandType = CommandType.Text;
+            if (sql.Contains("@Id"))
+            {
+                var sqlParam = conexionSQL.NewSqlParameter;
+                sqlParam.ParameterName = "@Id";
+                sqlParam.Value = Id;
+                sqlCom.Parameters.Add(sqlParam);
+            }
+            if (sql.Contains("@Nombre"))
+            {
+                var sqlParam = conexionSQL.NewSqlParameter;
+                sqlParam.ParameterName = "@Nombre";
+                sqlParam.Value = Nombre;
+                sqlCom.Parameters.Add(sqlParam);
+            }
+            if (sql.Contains("@Superficie"))
+            {
+                var sqlParam = conexionSQL.NewSqlParameter;
+                sqlParam.ParameterName = "@Superficie";
+                sqlParam.Value = Superficie;
+                sqlCom.Parameters.Add(sqlParam);
+            }
+            if (sql.Contains("@Capital"))
+            {
+                var sqlParam = conexionSQL.NewSqlParameter;
+                sqlParam.ParameterName = "@Capital";
+                sqlParam.Value = Capital;
+                sqlCom.Parameters.Add(sqlParam);
+            }
+            numQuery = conexionSQL.EjecutarQueryCommand(sqlCom);
             return numQuery;
         }
+
         private string RemplazarValoresSql(string sql)
         {
             if (!this.Id.ToString().Trim().Equals(""))
@@ -65,12 +100,12 @@ namespace AdminDepot.ModelosDTOs
             if (!this.Nombre.ToString().Trim().Equals(""))
                 sql = sql.Replace("@Nombre", "'" + this.Nombre + "'");
             if (!this.Superficie.ToString().Trim().Equals(""))
-                sql = sql.Replace("@Superficie", decimalConPunto(this.Superficie.ToString()));
+                sql = sql.Replace("@Superficie", DecimalConPunto(this.Superficie.ToString()));
             if (!this.Capital.ToString().Trim().Equals(""))
                 sql = sql.Replace("@Capital", "'" + this.Capital + "'");
             return sql;
         }
-        private string decimalConPunto(string valor)
+        private string DecimalConPunto(string valor)
         {
             string datoSql = valor;
             datoSql = datoSql.Replace(",", ".");

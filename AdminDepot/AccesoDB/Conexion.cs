@@ -11,6 +11,18 @@ namespace AccesoDatos
         private readonly SqlConnection sqlConnection;
         private SqlDataReader reader;
         public SqlDataReader Reader { get { return reader; } }
+        public SqlParameter NewSqlParameter { get { return new SqlParameter(); } }
+        private SqlCommand command;
+        public SqlCommand NewSqlCommand 
+        {
+            get
+            {
+                if (command == null)
+                    return new SqlCommand();
+                else
+                    return command;
+            } 
+        }
 
         public ConexionSQL(string conexion)
         {
@@ -91,11 +103,33 @@ namespace AccesoDatos
             return numQuery;
         }
 
+        public int EjecutarQueryCommand(SqlCommand sqlCommand)
+        {
+            int numQuery = 0;
+            try
+            {
+                command = sqlCommand;
+                sqlConnection.Open();
+                command.Connection = sqlConnection;
+                numQuery = command.ExecuteNonQuery();
+            }
+            catch (System.Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                sqlConnection.Close();
+            }
+            return numQuery;
+        }
+
         public void Dispose()
         {
             if (sqlConnection.State == ConnectionState.Open)
                 sqlConnection.Close();
             sqlConnection.Dispose();
+            NewSqlCommand.Dispose();
         }
     }
 }

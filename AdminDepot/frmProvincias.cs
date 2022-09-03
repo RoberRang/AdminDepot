@@ -89,7 +89,7 @@ namespace AdminDepot
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            var dr = (DataRowView)dgvProvincias.CurrentRow.DataBoundItem;
+            //var dr = (DataRowView)dgvProvincias.CurrentRow.DataBoundItem;
 
             txtNombre.Text = dgvProvincias.SelectedRows[0].Cells["Nombre"].Value.ToString();
             txtCapital.Text = dgvProvincias.SelectedRows[0].Cells["Capital"].Value.ToString();
@@ -101,7 +101,6 @@ namespace AdminDepot
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            var dr = (DataRowView)dgvProvincias.CurrentRow.DataBoundItem;
             string mensaje = "Desea Eliminar el registro seleccionado";
             DialogResult dialogResult = MessageBox.Show(mensaje, "Eliminar", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
             if (dialogResult == DialogResult.OK)
