@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Data;
 using System.Data.SqlClient;
+using System.Data;
 
-
-namespace AccesoDatos
+namespace AccesoDataBase
 {
-    public class ConexionSQL: IDisposable
+    public class ConexionSQL : IDisposable
     {
         private readonly string Conexion;
         private readonly SqlConnection sqlConnection;
@@ -13,7 +12,7 @@ namespace AccesoDatos
         public SqlDataReader Reader { get { return reader; } }
         public SqlParameter NewSqlParameter { get { return new SqlParameter(); } }
         private SqlCommand command;
-        public SqlCommand NewSqlCommand 
+        public SqlCommand NewSqlCommand
         {
             get
             {
@@ -21,7 +20,7 @@ namespace AccesoDatos
                     return new SqlCommand();
                 else
                     return command;
-            } 
+            }
         }
 
         public ConexionSQL(string conexion)
@@ -37,7 +36,7 @@ namespace AccesoDatos
             {
                 sqlConnection.Open();
                 dsConsulta = new DataSet("Consulta");
-                 
+
                 SqlDataAdapter sqlDataAdapter = new SqlDataAdapter();
                 sqlDataAdapter.SelectCommand = new SqlCommand();
                 sqlDataAdapter.SelectCommand.Connection = sqlConnection;
@@ -52,7 +51,7 @@ namespace AccesoDatos
             }
             finally
             {
-                sqlConnection.Close();                
+                sqlConnection.Close();
             }
             return dsConsulta;
         }

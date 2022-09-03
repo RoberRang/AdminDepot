@@ -57,7 +57,6 @@
     <Compile Include="Modelos\Administracion.cs" />
     <Compile Include="Modelos\Cliente.cs" />
     <Compile Include="Modelos\Compartimiento.cs" />
-    <Compile Include="AccesoDB\Conexion.cs" />
     <Compile Include="Modelos\Deposito.cs" />
     <Compile Include="Modelos\Lado.cs" />
     <Compile Include="Modelos\Pasillo.cs" />
@@ -99,6 +98,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AccesoDataBase\AccesoDataBase.csproj">
+      <Project>{24ec2014-9de1-4b72-bf6b-96a7f228c5c2}</Project>
+      <Name>AccesoDataBase</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

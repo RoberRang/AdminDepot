@@ -1,9 +1,8 @@
 ﻿using System.Data;
 using AdminDepot.Modelos;
-using AccesoDatos;
 using System.Collections.Generic;
 using System;
-using System.Data.Common;
+using AccesoDataBase;
 
 namespace AdminDepot.ModelosDTOs
 {
