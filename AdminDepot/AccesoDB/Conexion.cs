@@ -56,7 +56,7 @@ namespace AccesoDatos
             }
             return dsConsulta;
         }
-        public IDataReader EjecutarConsultaDataReader(string consulta)
+        public SqlDataReader EjecutarConsultaDataReader(string consulta)
         {
             try
             {
