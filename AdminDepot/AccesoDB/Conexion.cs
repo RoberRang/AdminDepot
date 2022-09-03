@@ -1,10 +1,11 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using System.Data.SqlClient;
 
 
 namespace AccesoDatos
 {
-    public class ConexionSQL
+    public class ConexionSQL: IDisposable
     {
         private readonly string Conexion;
         private readonly SqlConnection sqlConnection;
@@ -90,5 +91,11 @@ namespace AccesoDatos
             return numQuery;
         }
 
+        public void Dispose()
+        {
+            if (sqlConnection.State == ConnectionState.Open)
+                sqlConnection.Close();
+            sqlConnection.Dispose();
+        }
     }
 }
