@@ -71,37 +71,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ARTICULOS.cs">
-      <DependentUpon>EntityCatalogo.tt</DependentUpon>
-    </Compile>
-    <Compile Include="CATEGORIAS.cs">
-      <DependentUpon>EntityCatalogo.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EntityCatalogo.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EntityCatalogo.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EntityCatalogo.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EntityCatalogo.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EntityCatalogo.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EntityCatalogo.edmx</DependentUpon>
-    </Compile>
     <Compile Include="frmPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmPrincipal.Designer.cs">
       <DependentUpon>frmPrincipal.cs</DependentUpon>
     </Compile>
-    <Compile Include="MARCAS.cs">
-      <DependentUpon>EntityCatalogo.tt</DependentUpon>
-    </Compile>
     <Compile Include="Modelos\Articulo.cs" />
+    <Compile Include="Modelos\Categoria.cs" />
+    <Compile Include="Modelos\Marca.cs" />
     <Compile Include="ServiciosModelo\ServicioProvincia.cs" />
     <Compile Include="Modelos\Administracion.cs" />
     <Compile Include="Modelos\Cliente.cs" />
@@ -135,13 +113,6 @@
     <EmbeddedResource Include="frmProvincias.resx">
       <DependentUpon>frmProvincias.cs</DependentUpon>
     </EmbeddedResource>
-    <EntityDeploy Include="EntityCatalogo.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>EntityCatalogo.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="EntityCatalogo.edmx.diagram">
-      <DependentUpon>EntityCatalogo.edmx</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -161,25 +132,6 @@
       <Project>{24ec2014-9de1-4b72-bf6b-96a7f228c5c2}</Project>
       <Name>AccesoDataBase</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="CATALOGO_DB.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="CATALOGO_DB_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>CATALOGO_DB.mdf</DependentUpon>
-    </Content>
-    <Content Include="EntityCatalogo.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>EntityCatalogo.Context.cs</LastGenOutput>
-      <DependentUpon>EntityCatalogo.edmx</DependentUpon>
-    </Content>
-    <Content Include="EntityCatalogo.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>EntityCatalogo.edmx</DependentUpon>
-      <LastGenOutput>EntityCatalogo.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
